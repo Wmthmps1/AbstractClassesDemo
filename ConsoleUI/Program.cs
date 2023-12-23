@@ -8,6 +8,7 @@ namespace ConsoleUI
 {
     class Program
     {
+
         static void Main(string[] args)
         {
             /*
@@ -17,20 +18,6 @@ namespace ConsoleUI
 
             #region Vehicles
 
-            /*
-             * Create an abstract class called Vehicle
-             * The vehicle class shall have three string properties: Year, Make, and Model
-             * Set the defaults of the properties to something generic in the Vehicle class
-             * Vehicle class shall have an abstract method called DriveAbstract with no implementation.
-             * Vehicle class shall have a virtual method called DriveVirtual with a base implementation.
-             */
-
-            /* 
-             * Now create 2 non-abstract classes: Car and Motorcycle, that inherit from Vehicle
-             * Add a distinct property in the 2 derived classes such as HasTrunk for Car and HasSideCart for Motorcycle
-             * Provide the implementations for the abstract methods
-             * Only in the Motorcycle class will you override the virtual drive method
-            */
 
             // Create a list of Vehicle called vehicles
 
@@ -47,8 +34,30 @@ namespace ConsoleUI
 
             // Call each of the drive methods for one car and one motorcycle
 
-            #endregion            
-            Console.ReadLine();
+            #endregion
+
+            var vehicles = new List<Vehicle>();
+
+            var accord = new Car() {HasTrunk = true, Year = "2001", Make = "Honda", Model = "Accord" };
+            var kawasaki = new Motorcycle() { HasSideCar = true, Year = "2023", Make = "Kawasaki", Model = "Z400" };
+            Vehicle truck = new Car() {HasTrunk = false, Year = "2022", Make = "Ford", Model = "F-150" };
+            Vehicle sportsBike = new Motorcycle() { HasSideCar = false, Year = "2022", Make = "Honda", Model = "CBR 1225" };
+
+            vehicles.Add(accord);
+            vehicles.Add(kawasaki);
+            vehicles.Add(truck);
+            vehicles.Add(sportsBike);
+
+            foreach (Vehicle v in vehicles)
+            {
+                Console.WriteLine($"{v.Year} {v.Make} {v.Model}");
+                v.DriveAbstract();
+                v.DriveVirtual();
+                Console.WriteLine("_________________________________________________");
+
+
+            }
+
         }
     }
 }
